@@ -19,6 +19,11 @@ html {
   padding-bottom: 30px;
 }
 
+#sub {
+  background-color: grey;
+  color: white;
+}
+
 #button {
   color: black;
   background-color: yellow;
