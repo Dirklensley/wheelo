@@ -186,8 +186,7 @@ function SendMessage() {
         type: "POST",
         dataType: "json",
         contentType: "application/json; charset=utf-8",
-        //url: "https://comms.wheelo.co.za/message",
-        url: "http://localhost:8085/message",
+        url: "https://comms.wheelo.co.za/message",
         data: JSON.stringify(msg)
     }).done(MessageDone);
 }
