@@ -155,7 +155,7 @@ function SendSubmission() {
             "Trim": $('#ddlTrim option:selected').text(),
             "Mileage": Number.parseInt($('#txtMileage').val()),
             "Price": Number.parseFloat($('#txtPrice').val()),
-            "Condition":  Number.parseInt($('#ddlCondition').val()),
+            "Condition": Number.parseInt($('#ddlCondition').val()),
             "Issues": $('#txtIssues').val()
         }
     };
@@ -163,12 +163,35 @@ function SendSubmission() {
     $.ajax({
         type: "POST",
         dataType: "json",
-        contentType:"application/json; charset=utf-8",
+        contentType: "application/json; charset=utf-8",
         url: "https://leads.wheelo.co.za/submissions",
         data: JSON.stringify(subms)
-    }).done(SubmitDone)
+    }).done(SubmitDone);
 }
 
 function SubmitDone() {
     alert("Thank you for your Submission.");
+}
+
+function SendMessage() {
+    var msg = {
+        "Body": $("#txtContactBody").val(),
+        "Email": $("#txtContactEmail").val() || $("#txtEmail").val(),
+        "Name": $("#txtContactName").val() || $("#txtName").val(),
+        "Phone": $("#txtContactContactNo").val() || $("#txtContactNo").val(),
+        "To": "kierrie@wheelo.co.za"
+    };
+
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        //url: "https://comms.wheelo.co.za/message",
+        url: "http://localhost:8085/message",
+        data: JSON.stringify(msg)
+    }).done(MessageDone);
+}
+
+function MessageDone() {
+    alert("Thank you, we will be in touch.");
 }
