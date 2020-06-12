@@ -11,12 +11,14 @@ import (
 )
 
 func main() {
-	clientId := flag.String("client", "mango.wheelo", "Client ID which will be used to verify this instance")
+	clientId := flag.String("client", "mango.www", "Client ID which will be used to verify this instance")
 	clientSecrt := flag.String("secret", "secret", "Client Secret which will be used to authenticate this instance")
 	securty := flag.String("security", "http://localhost:8086", "Security Provider's URL")
 	authr := flag.String("authority", "http://localhost:8094", "Authority Provider's URL")
 
 	flag.Parse()
+
+	log.Println(*clientId)
 
 	tkn, err := kong.FetchToken(http.DefaultClient, *securty, *clientId, *clientSecrt, "theme.assets.download", "theme.assets.view")
 

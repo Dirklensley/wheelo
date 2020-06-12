@@ -34,7 +34,7 @@ html {
 
 #cont {
     background-image: url(https://picsum.photos/id/381/1920/1080);
-    background: linear-gradient(rgba(31, 44, 108, 0.65), rgba(31, 44, 108, 0.65)), rgba(0, 0, 0, 0.55) url("../img/contact.jpeg") no-repeat;
+    background: linear-gradient(rgba(31, 44, 108, 0.65), rgba(31, 44, 108, 0.65)), rgba(0, 0, 0, 0.55) url("/dist/img/contact.jpeg") no-repeat;
     background-attachment: fixed;
     background-size: cover;
     color: whitesmoke;
@@ -43,8 +43,8 @@ html {
 }
 
 .hero {
-    background-image: url("../img/top.jpeg");
-    background: linear-gradient(rgba(31, 44, 108, 0.65), rgba(31, 44, 108, 0.65)), rgba(0, 0, 0, 0.55) url("../img/top.jpeg") no-repeat;
+    background-image: url("/dist/img/top.jpeg");
+    background: linear-gradient(rgba(31, 44, 108, 0.65), rgba(31, 44, 108, 0.65)), rgba(0, 0, 0, 0.55) url("/dist/img/top.jpeg") no-repeat;
     background-attachment: fixed;
     background-size: cover;
     color: whitesmoke;
