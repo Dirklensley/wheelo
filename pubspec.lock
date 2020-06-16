@@ -282,7 +282,14 @@ packages:
       name: mango_ui
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.1"
+    version: "1.0.3"
+  mango_vin:
+    dependency: "direct main"
+    description:
+      name: mango_vin
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   matcher:
     dependency: transitive
     description:

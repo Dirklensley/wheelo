@@ -19,7 +19,18 @@ func SetupRoutes(clnt, scrt, secureUrl, authUrl string) http.Handler {
 	fs := http.FileServer(distPath)
 	r.PathPrefix("/dist/").Handler(http.StripPrefix("/dist/", fs))
 
-	r.HandleFunc("/", kong.ClientMiddleware(http.DefaultClient, clnt, scrt, secureUrl, authUrl, Index(mstr, tmpl))).Methods(http.MethodGet)
+	scopes := []string{
+		"comms.messages.create",
+		"theme.assets.download",
+		"theme.assets.view",
+		"artifact.download",
+		"leads.submission.create",
+		"vin.lookup.manufacturers",
+		"vin.lookup.models",
+		"vin.lookup.trims",
+		"artifact.uploads.create",
+	}
+	r.HandleFunc("/", kong.ClientMiddleware(http.DefaultClient, clnt, scrt, secureUrl, authUrl, Index(mstr, tmpl), scopes...)).Methods(http.MethodGet)
 
 	return r
 }

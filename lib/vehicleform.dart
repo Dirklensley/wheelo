@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'dart:html';
 
-import 'package:Wheelo/query.dart';
 import 'package:dart_toast/dart_toast.dart';
 import 'package:mango_leads/bodies/vehicle.dart';
+import 'package:mango_vin/lookupapi.dart';
 
 class VehicleForm {
   SelectElement ddlYear;
-  SelectElement ddlMake;
+  SelectElement ddlManufacturer;
   SelectElement ddlModel;
   SelectElement ddlTrim;
   NumberInputElement numMileage;
@@ -17,7 +17,7 @@ class VehicleForm {
 
   VehicleForm() {
     ddlYear = querySelector("#ddlYear");
-    ddlMake = querySelector("#ddlMake");
+    ddlManufacturer = querySelector("#ddlMake");
     ddlModel = querySelector("#ddlModel");
     ddlTrim = querySelector("#ddlTrim");
     numMileage = querySelector("#numMileage");
@@ -25,17 +25,25 @@ class VehicleForm {
     ddlCondition = querySelector("#ddlCondition");
     txtIssues = querySelector("#txtIssues");
 
-    ddlYear.onChange.listen(getMakes);
-    ddlMake.onChange.listen(getModels);
+    ddlYear.onChange.listen(getManufacturers);
+    ddlManufacturer.onChange.listen(getModels);
     ddlModel.onChange.listen(getTrims);
   }
 
-  Future<void> getMakes(Event e) async {
-    var req = await fetchCarMakes(year);
+  Future<void> getManufacturers(Event e) async {
+    var req = await fetchManufacturers(year);
+
     var content = jsonDecode(req.response);
 
     if (req.status == 200) {
-      print(content);
+      if (ddlManufacturer.hasChildNodes()) {
+        ddlManufacturer.children.clear();
+      }
+
+      for (final name in content) {
+        ddlManufacturer.children
+            .add(new OptionElement(data: name, value: name));
+      }
     } else {
       new Toast.error(
           title: "Error!",
@@ -44,16 +52,54 @@ class VehicleForm {
     }
   }
 
-  void getModels(Event e) {}
+  void getModels(Event e) async {
+    var req = await fetchModels(year, manufacturer);
 
-  void getTrims(Event e) {}
+    var content = jsonDecode(req.response);
 
-  num get year {
-    return num.parse(ddlYear.value);
+    if (req.status == 200) {
+      if (ddlModel.hasChildNodes()) {
+        ddlModel.children.clear();
+      }
+
+      for (final name in content) {
+        ddlModel.children.add(new OptionElement(data: name, value: name));
+      }
+    } else {
+      new Toast.error(
+          title: "Error!",
+          message: content['Error'],
+          position: ToastPos.bottomLeft);
+    }
   }
 
-  String get make {
-    return ddlMake.value;
+  void getTrims(Event e) async {
+    var req = await fetchTrims(year, manufacturer, model);
+
+    var content = jsonDecode(req.response);
+
+    if (req.status == 200) {
+      if (ddlTrim.hasChildNodes()) {
+        ddlTrim.children.clear();
+      }
+
+      for (final name in content) {
+        ddlTrim.children.add(new OptionElement(data: name, value: name));
+      }
+    } else {
+      new Toast.error(
+          title: "Error!",
+          message: content['Error'],
+          position: ToastPos.bottomLeft);
+    }
+  }
+
+  String get year {
+    return ddlYear.value;
+  }
+
+  String get manufacturer {
+    return ddlManufacturer.value;
   }
 
   String get makeCountry {
@@ -101,7 +147,19 @@ class VehicleForm {
   }
 
   Vehicle get object {
-    return new Vehicle(year, make, makeCountry, model, trim, drive,
-        transmission, body, enginePos, mileage, price, condition, issues);
+    return new Vehicle(
+        num.parse(year),
+        manufacturer,
+        makeCountry,
+        model,
+        trim,
+        drive,
+        transmission,
+        body,
+        enginePos,
+        mileage,
+        price,
+        condition,
+        issues);
   }
 }

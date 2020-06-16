@@ -1,11 +1,5 @@
-<div class="preloader-site">
-    <!-- Begin Preloader -->
-    <div class="preloader-wrapper">
-        <div class="preloader">
-            <img src="img/preloader.gif" alt=""/>
-        </div>
-    </div>
-    <!-- End Preloader-->
+<div>
+    {{.}}
     <!-- Begin Scroll Up Button -->
 
     <form action="#home">
@@ -538,10 +532,3 @@
         </div>
     </section>
 </div>
-<script>
-    if (sessionStorage) {
-        sessionStorage.clear();
-        sessionStorage.setItem("client.endpoints", JSON.stringify('{{.Identity.GetEndpoints}}'));
-        sessionStorage.setItem("client.token", '{{.Data.Token}}');
-    }
-</script>
