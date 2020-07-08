@@ -39,6 +39,6 @@ COPY views views
 
 RUN mkdir -p /views/_shared
 
-EXPOSE 8091
+EXPOSE 8105
 
 ENTRYPOINT [ "./wheelo" ]
