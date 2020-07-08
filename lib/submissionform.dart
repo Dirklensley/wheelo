@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'dart:html';
 
@@ -18,8 +17,7 @@ class SubmissionForm extends FormState {
   VehicleForm frmVehicle;
   PhotosForm frmPhotos;
 
-  SubmissionForm(String idElem, String submitBtn)
-      : super(idElem, submitBtn) {
+  SubmissionForm(String idElem, String submitBtn) : super(idElem, submitBtn) {
     frmSeller = new SellerForm();
     frmVehicle = new VehicleForm();
     frmPhotos = new PhotosForm();
@@ -53,9 +51,15 @@ class SubmissionForm extends FormState {
     var content = jsonDecode(req.response);
 
     if (req.status == 200) {
-      new Toast.success(title: "Success!", message: content['Data'],position: ToastPos.bottomLeft);
+      new Toast.success(
+          title: "Success!",
+          message: content['Data'],
+          position: ToastPos.bottomLeft);
     } else {
-      new Toast.error(title: "Error!", message: content['Error'],position: ToastPos.bottomLeft);
+      new Toast.error(
+          title: "Error!",
+          message: content['Error'],
+          position: ToastPos.bottomLeft);
     }
   }
 }

@@ -1,7 +1,7 @@
 import 'dart:html';
 
-import 'package:mango_leads/bodies/photos.dart';
 import 'package:mango_artifact/uploadapi.dart';
+import 'package:mango_leads/bodies/photos.dart';
 import 'package:mango_ui/keys.dart';
 
 class PhotosForm {
@@ -57,6 +57,7 @@ class PhotosForm {
   }
 
   Photos get object {
-    return new Photos(frontKey, leftKey, rightKey, rearKey, interiorKey, engineKey);
+    return new Photos(
+        frontKey, leftKey, rightKey, rearKey, interiorKey, engineKey);
   }
 }

@@ -13,7 +13,7 @@ func SetupRoutes(clnt, scrt, secureUrl, authUrl string) http.Handler {
 	if err != nil {
 		panic(err)
 	}
-
+	
 	r := mux.NewRouter()
 	distPath := http.FileSystem(http.Dir("dist/"))
 	fs := http.FileServer(distPath)

@@ -15,7 +15,7 @@ func Index(mstr *template.Template, tmpl *template.Template) http.HandlerFunc {
 	for i := time.Now().Year(); i > 1941; i-- {
 		years = append(years, i)
 	}
-
+	
 	obj := struct {
 		Years []int
 		Token string
