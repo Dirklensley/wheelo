@@ -8,7 +8,7 @@ import (
 )
 
 func SetupRoutes(clnt, scrt, secureUrl, authUrl string) http.Handler {
-	mstr, tmpl, err := droxolite.LoadTemplate("./views", "master.html")
+	tmpl, err := droxolite.LoadTemplate("./views")
 
 	if err != nil {
 		panic(err)
@@ -30,7 +30,7 @@ func SetupRoutes(clnt, scrt, secureUrl, authUrl string) http.Handler {
 		"vin.lookup.trims",
 		"artifact.uploads.create",
 	}
-	r.HandleFunc("/", kong.ClientMiddleware(http.DefaultClient, clnt, scrt, secureUrl, authUrl, Index(mstr, tmpl), scopes...)).Methods(http.MethodGet)
+	r.HandleFunc("/", kong.ClientMiddleware(http.DefaultClient, clnt, scrt, secureUrl, authUrl, Index(tmpl), scopes...)).Methods(http.MethodGet)
 
 	return r
 }
