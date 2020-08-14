@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"github.com/dirklensley/wheelo/handles"
-	"github.com/louisevanderlith/droxolite"
+	"github.com/louisevanderlith/droxolite/drx"
 	"log"
 	"net/http"
 	"time"
@@ -17,7 +17,7 @@ func main() {
 
 	flag.Parse()
 
-	err := droxolite.UpdateTemplate(*clientId, *clientSecrt, *securty)
+	err := drx.UpdateTemplate(*clientId, *clientSecrt, *securty)
 
 	if err != nil {
 		panic(err)

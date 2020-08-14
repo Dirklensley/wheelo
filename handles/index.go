@@ -1,7 +1,6 @@
 package handles
 
 import (
-	"github.com/louisevanderlith/droxolite/context"
 	"github.com/louisevanderlith/droxolite/mix"
 	"html/template"
 	"log"
@@ -10,22 +9,20 @@ import (
 )
 
 func Index(tmpl *template.Template) http.HandlerFunc {
-	pge := mix.PreparePage(tmpl, "Index", "./views/index.html")
+	pge := mix.PreparePage("Index", tmpl, "./views/index.html")
 	var years []int
 
 	for i := time.Now().Year(); i > 1941; i-- {
 		years = append(years, i)
 	}
-	
+
 	obj := struct {
 		Years []int
 	}{
 		Years: years,
 	}
 	return func(w http.ResponseWriter, r *http.Request) {
-		ctx := context.New(w, r)
-
-		err := ctx.Serve(http.StatusOK, pge.Page(obj, ctx.GetTokenInfo(), ctx.GetToken()))
+		err := mix.Write(w, pge.Create(r, obj))
 
 		if err != nil {
 			log.Println(err)

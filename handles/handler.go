@@ -2,35 +2,35 @@ package handles
 
 import (
 	"github.com/gorilla/mux"
-	"github.com/louisevanderlith/droxolite"
+	"github.com/louisevanderlith/droxolite/drx"
 	"github.com/louisevanderlith/kong"
 	"net/http"
 )
 
-func SetupRoutes(clnt, scrt, secureUrl, authUrl string) http.Handler {
-	tmpl, err := droxolite.LoadTemplate("./views")
+func SetupRoutes(clnt, scrt, securityUrl, authorityUrl string) http.Handler {
+	tmpl, err := drx.LoadTemplate("./views")
 
 	if err != nil {
 		panic(err)
 	}
-	
+
 	r := mux.NewRouter()
 	distPath := http.FileSystem(http.Dir("dist/"))
 	fs := http.FileServer(distPath)
 	r.PathPrefix("/dist/").Handler(http.StripPrefix("/dist/", fs))
 
-	scopes := []string{
-		"comms.messages.create",
-		"theme.assets.download",
-		"theme.assets.view",
-		"artifact.download",
-		"leads.submission.create",
-		"vin.lookup.manufacturers",
-		"vin.lookup.models",
-		"vin.lookup.trims",
-		"artifact.uploads.create",
+	scopes := map[string]bool{
+		"comms.messages.create":    true,
+		"theme.assets.download":    true,
+		"theme.assets.view":        true,
+		"artifact.download":        true,
+		"leads.submission.create":  true,
+		"vin.lookup.manufacturers": true,
+		"vin.lookup.models":        true,
+		"vin.lookup.trims":         true,
+		"artifact.uploads.create":  true,
 	}
-	r.HandleFunc("/", kong.ClientMiddleware(http.DefaultClient, clnt, scrt, secureUrl, authUrl, Index(tmpl), scopes...)).Methods(http.MethodGet)
+	r.HandleFunc("/", kong.ClientMiddleware(http.DefaultClient, clnt, scrt, securityUrl, authorityUrl, Index(tmpl), scopes)).Methods(http.MethodGet)
 
 	return r
 }
