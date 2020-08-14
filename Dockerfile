@@ -33,8 +33,6 @@ FROM alpine:latest
 COPY --from=builder /box/wheelo .
 COPY --from=pyltjie /arrow/build/*.dart.js* dist/js/
 
-COPY assets/img dist/img
-
 COPY views views
 
 RUN mkdir -p /views/_shared
