@@ -1,0 +1,63 @@
+<form id="frmSubmission" role="form" data-toggle="validator">
+    <section class="section has-background-grey-light" id="upload">
+        <h2 class="title has-text-centered">Personal Details</h2>
+        <br>
+        <div class="columns is-multiline is-centered has-text-centered" data-aos="fade-in" data-aos-easing="linear">
+            <div class="column is-5">
+                <h4 class="subtitle">Name</h4>
+                <div class="control has-text-centered">
+                    <input id="txtName" class="input" type="text" placeholder="Normal input">
+                </div>
+            </div>
+            <div class="column is-5">
+                <h4 class="subtitle">Contact Number</h4>
+                <div class="control has-text-centered">
+                    <input id="txtContactNo" class="input" type="text" placeholder="Normal input">
+                </div>
+            </div>
+            <div class="column is-5">
+                <h4 class="subtitle">E-mail adress</h4>
+                <div class="control has-text-centered">
+                    <input id="txtEmail" class="input" type="text" placeholder="Normal input">
+                </div>
+            </div>
+            <div class="column is-5">
+                <h4 class="subtitle">Province</h4>
+                <div class="control has-text-centered">
+                    <div class="select has-text-centered is-fullwidth">
+                        <select id="ddlProvince" class="is-hovered">
+                            <option>Select Province</option>
+                            <option>Eastern Cape</option>
+                            <option>Free State</option>
+                            <option>Gauteng</option>
+                            <option>KwaZulu-Natal</option>
+                            <option>Limpopo</option>
+                            <option>Mpumalanga</option>
+                            <option>North West</option>
+                            <option>Northern Cape</option>
+                            <option>Western Cape</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-5">
+                <h4 class="subtitle">Town</h4>
+                <div class="control has-text-centered">
+                    <input class="input" id="txtTown" type="text" placeholder="Normal input">
+                </div>
+            </div>
+            <div class="column is-5">
+                <h4 class="subtitle">Suburb</h4>
+                <input id="txtSuburb" class="input" type="text" placeholder="Normal input">
+            </div>
+            <div class="column is-5">
+                <h4 class="subtitle">Asking Price</h4>
+                <div class="control has-text-centered">
+                    <input class="input" id="numPrice" type="number" min="1000" max="2000000" step="500"
+                        placeholder="R">
+                </div>
+            </div>
+            <div class="column is-5"></div>
+        </div>
+    </section>
+</form>

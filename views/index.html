@@ -1,77 +1,23 @@
 <form id="frmSubmission" role="form" data-toggle="validator">
-    <!-- End About Me Content -->
-    <section class="section has-background-grey-light" id="upload">
-        <h2 class="title has-text-centered">Personal Details</h2>
-        <br>
-        <div class="columns is-12  has-text-centered" data-aos="fade-in" data-aos-easing="linear">
-            <div class="column is-2">
-                <h4 class="subtitle">Name</h4>
-                <div class="control has-text-centered">
-                    <input id="txtName" class="input" type="text" placeholder="Normal input">
-                </div>
-            </div>
-            <div class="column is-2">
-                <h4 class="subtitle">Contact Number</h4>
-                <div class="control has-text-centered">
-                    <input id="txtContactNo" class="input" type="text" placeholder="Normal input">
-                </div>
-            </div>
-            <div class="column is-2">
-                <h4 class="subtitle">E-mail adress</h4>
-                <div class="control has-text-centered">
-                    <input id="txtEmail" class="input" type="text" placeholder="Normal input">
-                </div>
-            </div>
-            <div class="column is-2">
-                <h4 class="subtitle">Province</h4>
-                <div class="control has-text-centered">
-                    <div class="select has-text-centered is-fullwidth">
-                        <select id="ddlProvince" class="is-hovered">
-                            <option>Select Province</option>
-                            <option>Eastern Cape</option>
-                            <option>Free State</option>
-                            <option>Gauteng</option>
-                            <option>KwaZulu-Natal</option>
-                            <option>Limpopo</option>
-                            <option>Mpumalanga</option>
-                            <option>North West</option>
-                            <option>Northern Cape</option>
-                            <option>Western Cape</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="column is-2">
-                <h4 class="subtitle">Town</h4>
-                <div class="control has-text-centered">
-                    <input class="input" id="txtTown" type="text" placeholder="Normal input">
-                </div>
-            </div>
-            <div class="column is-2">
-                <h4 class="subtitle">Suburb</h4>
-                <input id="txtSuburb" class="input" type="text" placeholder="Normal input">
-            </div>
-        </div>
-    </section>
-
     <section class="section has-background-grey-lighter services">
         <h2 class="title has-text-centered">Vehicle Details</h2>
-        <div class="columns is-12  has-text-centered" data-aos="fade-in" data-aos-easing="linear" id="services">
-            <div class="column is-2">
-                <h4 class="subtitle">Year</h4>
+        <div class="columns is-multiline is-centered about-me has-text-centered" data-aos="fade-in"
+            data-aos-easing="linear" id="services">
+            <div class="column is-10">
+                <h4 class="subtitle"><b>Year</b></h4>
                 <div class="control has-text-centered">
                     <div class="select is-fullwidth has-text-centered">
                         <select id="ddlYear" class="is-hovered">
                             <option>Select Year</option>
                             {{range $k := .Data.Years}}
-                                <option value="{{$k}}">{{$k}}</option>
+                            <option value="{{$k}}">{{$k}}</option>
                             {{end}}
                         </select>
                     </div>
                 </div>
-            </div>
-            <div class="column is-2">
-                <h4 class="subtitle">Make</h4>
+            </div><br>
+            <div class="column is-10">
+                <h4 class="subtitle"><b>Make</b></h4>
                 <div class="control has-text-centered">
                     <div class="select is-fullwidth has-text-centered">
                         <select id="ddlMake" class="is-hovered">
@@ -80,9 +26,9 @@
                         </select>
                     </div>
                 </div>
-            </div>
-            <div class="column is-2">
-                <h4 class="subtitle">Model</h4>
+            </div><br />
+            <div class="column is-10">
+                <h4 class="subtitle"><b>Model</b></h4>
                 <div class="control has-text-centered has-text-centered">
                     <div class="select is-fullwidth">
                         <select id="ddlModel" class="is-hovered">
@@ -92,8 +38,8 @@
                     </div>
                 </div>
             </div>
-            <div class="column is-6">
-                <h4 class="subtitle">Trim</h4>
+            <div class="column is-10">
+                <h4 class="subtitle"><b>Trim</b></h4>
                 <div class="control has-text-centered">
                     <div class="select is-fullwidth has-text-centered">
                         <select id="ddlTrim" class="is-hovered">
@@ -103,167 +49,85 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- Begin Skills Content -->
-    <section class="section has-background-white-ter">
-        <h2 class="title has-text-centered">Additional info</h2>
-        <div class="columns is-12  has-text-centered" data-aos="fade-in" data-aos-easing="linear">
-            <div class="column is-2">
-                <h4 class="subtitle">Mileage</h4>
-                <div class="control has-text-centered">
-                    <input id="numMileage" class="input" type="number" max="1000000" step="100" value="10000"
-                           placeholder="Normal input">
-                </div>
-            </div>
-            <div class="column is-2">
-                <h4 class="subtitle">Asking Price</h4>
-                <div class="control has-text-centered">
-                    <input class="input" id="txtPrice" type="number" min="1000" max="2000000" step="500"
-                           placeholder="Normal input">
-                </div>
-            </div>
-            <div class="column is-2">
-                <h4 class="subtitle">Condition</h4>
+            <br /><br /><br />
+            <div class="column is-5">
+                <h4 class="subtitle"><b>Body Type</b></h4>
                 <div class="control has-text-centered">
                     <div class="select is-fullwidth has-text-centered">
-                        <select id="ddlCondition" class="is-hovered">
-                            <option>1 - Poor</option>
-                            <option>2 - Needs work</option>
-                            <option>3 - Average</option>
-                            <option>4 - Good</option>
-                            <option>5 - Very Good</option>
+                        <select id="ddlBodyStyle" class="is-hovered">
+                            <option>Select dropdown</option>
+                            <option value="0">Bus</option>
+                            <option value="1">Cabriolet</option>
+                            <option value="2">Coupe</option>
+                            <option value="3">Double Cab Bakkie</option>
+                            <option value="4">Dropside</option>
+                            <option value="5">Hatchback</option>
+                            <option value="6">MPV</option>
+                            <option value="7">Panel Van</option>
+                            <option value="8">SUV</option>
+                            <option value="9">Sedan</option>
+                            <option value="10">Single Cab Bakkie</option>
+                            <option value="11">Station Wagon</option>
                         </select>
                     </div>
                 </div>
             </div>
-            <div class="column is-6">
-                <h4 class="subtitle">Issues</h4>
+            <div class="column is-5">
+                <h4 class="subtitle"><b>Doors</b></h4>
+                <div class="control has-text-centered has-text-centered">
+                    <div class="select is-fullwidth">
+                        <select id="ddlDoors" class="is-hovered">
+                            <option>Select dropdown</option>
+                            <option value="2">2 Door</option>
+                            <option value="4">4 Door</option>
+                            <option value="5">5 Door</option>
+                            <option value="0">Other</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-5">
+                <h4 class="subtitle"><b>Mileage</b></h4>
                 <div class="control has-text-centered">
+                    <input id="numMileage" class="input" type="number" max="1000000" step="100"
+                        placeholder="Current mileage">
+                </div>
+            </div>
+            <div class="column is-5 chkbox">
+                <div class="control level">
+                    <label class="checkbox">
+                        <input id="chkService" type="checkbox">
+                        <b>Service History?</b>
+                    </label>
+                    <label class="checkbox">
+                        <input id="chkSpare" type="checkbox">
+                        <b>Spare Keys?</b>
+                    </label>
+                </div>
+            </div>
+            <div class="column is-5">
+                <h4 class="subtitle"><b>Condition</b></h4>
+                <div class="control has-text-centered">
+                    <div class="select is-fullwidth has-text-centered">
+                        <select id="ddlCondition" class="is-hovered">
+                            <option value="1">1 - Poor</option>
+                            <option value="2">2 - Needs work</option>
+                            <option value="3">3 - Average</option>
+                            <option value="4">4 - Good</option>
+                            <option value="5">5 - Very Good</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-5">
+                <h4 class="subtitle"><b>Any issues on the vehicle?</b></h4>
+                <div class="field">
+                    <div class="control">
                         <textarea id="txtIssues" class="textarea"
-                                  placeholder="e.g. Windscreen cracks, worn tyres, engine lights etc."></textarea>
+                            placeholder="Please list any issues on the vehicle you are selling e.g Engine light, Cracked windscreen etc."></textarea>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <br>
-    <section class="section">
-        <h2 class="title has-text-centered">Photos</h2>
-        <div class="columns is-12  has-text-centered" data-aos="fade-in" data-aos-easing="linear">
-            <div class="column is-2">
-                <h4 class="subtitle">Front</h4>
-                <div class="file is-boxed is-centered">
-                    <label class="file-label">
-                        <input class="file-input" type="file" multiple="false" data-for="Ad" data-name="Leads"
-                               data-id="" accept=".jpg, .jpeg, .png" id="uplFront" placeholder="Front Image"
-                               required/>
-                        <span class="file-cta">
-                            <span class="file-icon">
-                                <i class="fas fa-upload"></i>
-                            </span>
-                            <span class="file-label">
-                                Upload here
-                            </span>
-                        </span>
-                    </label>
-                </div>
-            </div>
-            <div class="column is-2">
-                <h4 class="subtitle">Left</h4>
-                <div class="file is-boxed is-centered">
-                    <label class="file-label">
-                        <input class="file-input" type="file" multiple="false" data-for="Ad" data-name="Leads"
-                               data-id="" accept=".jpg, .jpeg, .png" id="uplLeft" placeholder="Left Image"
-                               required/>
-                        <span class="file-cta">
-                            <span class="file-icon">
-                                <i class="fas fa-upload"></i>
-                            </span>
-                            <span class="file-label">
-                                Upload here
-                            </span>
-                        </span>
-                    </label>
-                </div>
-            </div>
-            <div class="column is-2">
-                <h4 class="subtitle">Right</h4>
-                <div class="file is-boxed is-centered">
-                    <label class="file-label">
-                        <input class="file-input" type="file" multiple="false" data-for="Ad" data-name="Leads"
-                               data-id="" accept=".jpg, .jpeg, .png" id="uplRight" placeholder="Right Image"
-                               required/>
-                        <span class="file-cta">
-                            <span class="file-icon">
-                                <i class="fas fa-upload"></i>
-                            </span>
-                            <span class="file-label">
-                                Upload here
-                            </span>
-                        </span>
-                    </label>
-                </div>
-            </div>
-            <div class="column is-2">
-                <h4 class="subtitle">Rear</h4>
-                <div class="file is-boxed is-centered">
-                    <label class="file-label">
-                        <input class="file-input" type="file" multiple="false" data-for="Ad" data-name="Leads"
-                               data-id="" accept=".jpg, .jpeg, .png" id="uplRear" placeholder="Rear Image"
-                               required/>
-                        <span class="file-cta">
-                            <span class="file-icon">
-                                <i class="fas fa-upload"></i>
-                            </span>
-                            <span class="file-label">
-                                Upload here
-                            </span>
-                        </span>
-                    </label>
-                </div>
-            </div>
-            <div class="column is-2">
-                <h4 class="subtitle">Interior</h4>
-                <div class="file is-boxed is-centered">
-                    <label class="file-label">
-                        <input class="file-input" type="file" multiple="false" data-for="Ad" data-name="Leads"
-                               data-id="" accept=".jpg, .jpeg, .png" id="uplInterior"
-                               placeholder="Interior Image"
-                               required/>
-                        <span class="file-cta">
-                            <span class="file-icon">
-                                <i class="fas fa-upload"></i>
-                            </span>
-                            <span class="file-label">
-                                Upload here
-                            </span>
-                        </span>
-                    </label>
-                </div>
-            </div>
-            <div class="column is-2">
-                <h4 class="subtitle">Engine</h4>
-                <div class="file is-boxed is-centered">
-                    <label class="file-label">
-                        <input class="file-input" type="file" multiple="false" data-for="Ad" data-name="Leads"
-                               data-id="" accept=".jpg, .jpeg, .png" id="uplEngine" placeholder="Engine Image"
-                               required/>
-                        <span class="file-cta">
-                            <span class="file-icon">
-                                <i class="fas fa-upload"></i>
-                            </span>
-                            <span class="file-label">
-                                Upload here
-                            </span>
-                        </span>
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div class="control">
-            <button type="button" onclick="SendSubmission()" id="btnSubmissionSubmit"
-                    class="button has-text-weight-medium is-medium is-pulled-right">Submit
-            </button>
         </div>
     </section>
 </form>
