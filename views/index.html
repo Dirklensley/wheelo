@@ -1,4 +1,7 @@
-<form id="frmSubmission" role="form" data-toggle="validator">
+
+{{template "master.html" .}}
+{{define "layoutcontent"}}
+<form id="frmVehicle" role="form" data-toggle="validator">
     <section class="section has-background-grey-lighter services">
         <h2 class="title has-text-centered">Vehicle Details</h2>
         <div class="columns is-multiline is-centered about-me has-text-centered" data-aos="fade-in"
@@ -128,6 +131,13 @@
                     </div>
                 </div>
             </div>
+            <div class="column is-10">
+                <div class="buttons is-right">
+                    <button id="btnSubmit" class="button is-block is-normal">Next</button>
+                    <p id="frmStep1Err" class="help is-danger"></p>
+                </div>
+            </div>
         </div>
     </section>
 </form>
+{{end}}

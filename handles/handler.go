@@ -31,6 +31,8 @@ func SetupRoutes(clnt, scrt, securityUrl, authorityUrl string) http.Handler {
 		"artifact.uploads.create":  true,
 	}
 	r.HandleFunc("/", kong.ClientMiddleware(http.DefaultClient, clnt, scrt, securityUrl, authorityUrl, Index(tmpl), scopes)).Methods(http.MethodGet)
+	r.HandleFunc("/photos", kong.ClientMiddleware(http.DefaultClient, clnt, scrt, securityUrl, authorityUrl, Photos(tmpl), scopes)).Methods(http.MethodGet)
+	r.HandleFunc("/personal", kong.ClientMiddleware(http.DefaultClient, clnt, scrt, securityUrl, authorityUrl, Personal(tmpl), scopes)).Methods(http.MethodGet)
 
 	return r
 }

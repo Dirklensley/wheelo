@@ -14,6 +14,10 @@ class VehicleForm {
   NumberInputElement numPrice;
   SelectElement ddlCondition;
   TextAreaElement txtIssues;
+  CheckboxInputElement chkService;
+  CheckboxInputElement chkSpare;
+  SelectElement ddlBodyType;
+  SelectElement ddlDoors;
 
   VehicleForm() {
     ddlYear = querySelector("#ddlYear");
@@ -24,6 +28,11 @@ class VehicleForm {
     numPrice = querySelector("#numPrice");
     ddlCondition = querySelector("#ddlCondition");
     txtIssues = querySelector("#txtIssues");
+    chkService = querySelector("#chkService");
+    chkSpare = querySelector("#chkSpare");
+    ddlBodyType = querySelector("#ddlBodyType");
+    ddlDoors = querySelector("#ddlDoors");
+
 
     ddlYear.onChange.listen(getManufacturers);
     ddlManufacturer.onChange.listen(getModels);
@@ -146,6 +155,22 @@ class VehicleForm {
     return txtIssues.text;
   }
 
+  bool get spare {
+    return chkSpare.checked;
+  }
+
+  bool get service {
+    return chkService.checked;
+  }
+
+   String get bodytype {
+    return ddlBodyType.value;
+  }
+
+  String get doors {
+    return (ddlDoors).value;
+  }
+
   Vehicle get object {
     return new Vehicle(
         num.parse(year),
@@ -160,6 +185,10 @@ class VehicleForm {
         mileage,
         price,
         condition,
-        issues);
+        issues,
+        spare,
+        service,
+        bodytype,
+        doors);
   }
 }
