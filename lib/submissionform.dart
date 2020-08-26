@@ -1,27 +1,21 @@
 import 'dart:convert';
 import 'dart:html';
 
-import 'package:Wheelo/photosform.dart';
 import 'package:Wheelo/sellerform.dart';
-import 'package:Wheelo/vehicleform.dart';
 import 'package:dart_toast/dart_toast.dart';
 import 'package:mango_leads/api.dart';
-import 'package:mango_leads/bodies/photos.dart';
 import 'package:mango_leads/bodies/seller.dart';
 import 'package:mango_leads/bodies/submission.dart';
-import 'package:mango_leads/bodies/vehicle.dart';
 import 'package:mango_ui/formstate.dart';
+import 'package:mango_ui/keys.dart';
 
 class SubmissionForm extends FormState {
   SellerForm frmSeller;
-  VehicleForm frmVehicle;
-  PhotosForm frmPhotos;
+  HiddenInputElement hdnVehicleKey;
 
   SubmissionForm(String idElem, String submitBtn) : super(idElem, submitBtn) {
     frmSeller = new SellerForm();
-    frmVehicle = new VehicleForm();
-    frmPhotos = new PhotosForm();
-
+    hdnVehicleKey = querySelector("#hdnVehicleKey");
     var submit = querySelector(submitBtn);
     submit.onClick.listen(onSend);
   }
@@ -30,12 +24,8 @@ class SubmissionForm extends FormState {
     return frmSeller.object;
   }
 
-  Vehicle get vehicle {
-    return frmVehicle.object;
-  }
-
-  Photos get photos {
-    return frmPhotos.object;
+  Key get vehicleKey {
+    return new Key(hdnVehicleKey.value);
   }
 
   void onSend(Event e) {
@@ -46,7 +36,7 @@ class SubmissionForm extends FormState {
   }
 
   submitSend() async {
-    var data = new Submission(seller, vehicle, photos);
+    var data = new Submission(seller, vehicleKey);
     var req = await sendSubmission(data);
     var content = jsonDecode(req.response);
 

@@ -1,7 +1,6 @@
 import 'dart:html';
 
 import 'package:mango_artifact/uploadapi.dart';
-import 'package:mango_leads/bodies/photos.dart';
 import 'package:mango_ui/keys.dart';
 
 class PhotosForm {
@@ -54,10 +53,5 @@ class PhotosForm {
 
   Key get engineKey {
     return new Key(uplEngine.dataset['id']);
-  }
-
-  Photos get object {
-    return new Photos(
-        frontKey, leftKey, rightKey, rearKey, interiorKey, engineKey);
   }
 }

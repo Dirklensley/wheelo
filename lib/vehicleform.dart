@@ -2,10 +2,13 @@ import 'dart:convert';
 import 'dart:html';
 
 import 'package:dart_toast/dart_toast.dart';
-import 'package:mango_leads/bodies/vehicle.dart';
+import 'package:mango_ui/keys.dart';
+import 'package:mango_vehicle/bodies/vehicle.dart';
 import 'package:mango_vin/lookupapi.dart';
 
 class VehicleForm {
+  HiddenInputElement hdnVinKey;
+  TextInputElement txtVin;
   SelectElement ddlYear;
   SelectElement ddlManufacturer;
   SelectElement ddlModel;
@@ -32,7 +35,6 @@ class VehicleForm {
     chkSpare = querySelector("#chkSpare");
     ddlBodyType = querySelector("#ddlBodyType");
     ddlDoors = querySelector("#ddlDoors");
-
 
     ddlYear.onChange.listen(getManufacturers);
     ddlManufacturer.onChange.listen(getModels);
@@ -103,8 +105,20 @@ class VehicleForm {
     }
   }
 
+  Key get vinKey {
+    return new Key(hdnVinKey.value);
+  }
+
+  String get vin {
+    return txtVin.text;
+  }
+
   String get year {
     return ddlYear.value;
+  }
+
+  String get month {
+    return "";
   }
 
   String get manufacturer {
@@ -163,7 +177,7 @@ class VehicleForm {
     return chkService.checked;
   }
 
-   String get bodytype {
+  String get bodytype {
     return ddlBodyType.value;
   }
 
@@ -173,22 +187,24 @@ class VehicleForm {
 
   Vehicle get object {
     return new Vehicle(
-        num.parse(year),
-        manufacturer,
-        makeCountry,
-        model,
-        trim,
-        drive,
-        transmission,
-        body,
-        enginePos,
-        mileage,
-        price,
-        condition,
-        issues,
+      vinKey,
+      vin,
+      series,
+      colour,
+      paintNo,
+      num.parse(month),
+      num.parse(year),
+      engine,
+      gearbox,
+      bodytype,
+      doors,
+      trim,
+      extra,
+    );
+    /*,
         spare,
         service,
         bodytype,
-        doors);
+        doors);*/
   }
 }

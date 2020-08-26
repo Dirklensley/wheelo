@@ -268,7 +268,7 @@ packages:
       name: mango_leads
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.1"
+    version: "1.0.2"
   mango_ui:
     dependency: "direct main"
     description:
@@ -276,6 +276,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
+  mango_vehicle:
+    dependency: "direct main"
+    description:
+      name: mango_vehicle
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   mango_vin:
     dependency: "direct main"
     description:
