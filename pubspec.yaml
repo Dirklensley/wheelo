@@ -14,4 +14,4 @@ dependencies:
   dart_toast: '^0.3.0'
   mango_artifact: '^1.0.0'
   mango_vin: '^1.0.0'
-  mango_vehicle: '^1.0.2'
+  mango_vehicle: '^1.0.7'

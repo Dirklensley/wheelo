@@ -1,18 +1,19 @@
-import 'dart:convert';
 import 'dart:html';
 
-import 'package:dart_toast/dart_toast.dart';
+import 'package:Wheelo/engineform.dart';
+import 'package:Wheelo/gearboxform.dart';
+import 'package:Wheelo/seriesform.dart';
+import 'package:mango_ui/formstate.dart';
 import 'package:mango_ui/keys.dart';
+import 'package:mango_vehicle/bodies/engine.dart';
+import 'package:mango_vehicle/bodies/gearbox.dart';
+import 'package:mango_vehicle/bodies/series.dart';
 import 'package:mango_vehicle/bodies/vehicle.dart';
-import 'package:mango_vin/lookupapi.dart';
 
-class VehicleForm {
+class VehicleForm extends FormState {
   HiddenInputElement hdnVinKey;
   TextInputElement txtVin;
-  SelectElement ddlYear;
-  SelectElement ddlManufacturer;
-  SelectElement ddlModel;
-  SelectElement ddlTrim;
+
   NumberInputElement numMileage;
   NumberInputElement numPrice;
   SelectElement ddlCondition;
@@ -21,12 +22,13 @@ class VehicleForm {
   CheckboxInputElement chkSpare;
   SelectElement ddlBodyType;
   SelectElement ddlDoors;
+  SeriesForm frmSeries;
+  EngineForm frmEngine;
+  GearboxForm frmGearbox;
+  TextInputElement txtColour;
+  UListElement liExtra;
 
-  VehicleForm() {
-    ddlYear = querySelector("#ddlYear");
-    ddlManufacturer = querySelector("#ddlMake");
-    ddlModel = querySelector("#ddlModel");
-    ddlTrim = querySelector("#ddlTrim");
+  VehicleForm(String idElem, String submitBtn) : super(idElem, submitBtn) {
     numMileage = querySelector("#numMileage");
     numPrice = querySelector("#numPrice");
     ddlCondition = querySelector("#ddlCondition");
@@ -36,73 +38,9 @@ class VehicleForm {
     ddlBodyType = querySelector("#ddlBodyType");
     ddlDoors = querySelector("#ddlDoors");
 
-    ddlYear.onChange.listen(getManufacturers);
-    ddlManufacturer.onChange.listen(getModels);
-    ddlModel.onChange.listen(getTrims);
-  }
-
-  Future<void> getManufacturers(Event e) async {
-    var req = await fetchManufacturers(year);
-
-    var content = jsonDecode(req.response);
-
-    if (req.status == 200) {
-      if (ddlManufacturer.hasChildNodes()) {
-        ddlManufacturer.children.clear();
-      }
-
-      for (final name in content) {
-        ddlManufacturer.children
-            .add(new OptionElement(data: name, value: name));
-      }
-    } else {
-      new Toast.error(
-          title: "Error!",
-          message: content['Error'],
-          position: ToastPos.bottomLeft);
-    }
-  }
-
-  void getModels(Event e) async {
-    var req = await fetchModels(year, manufacturer);
-
-    var content = jsonDecode(req.response);
-
-    if (req.status == 200) {
-      if (ddlModel.hasChildNodes()) {
-        ddlModel.children.clear();
-      }
-
-      for (final name in content) {
-        ddlModel.children.add(new OptionElement(data: name, value: name));
-      }
-    } else {
-      new Toast.error(
-          title: "Error!",
-          message: content['Error'],
-          position: ToastPos.bottomLeft);
-    }
-  }
-
-  void getTrims(Event e) async {
-    var req = await fetchTrims(year, manufacturer, model);
-
-    var content = jsonDecode(req.response);
-
-    if (req.status == 200) {
-      if (ddlTrim.hasChildNodes()) {
-        ddlTrim.children.clear();
-      }
-
-      for (final name in content) {
-        ddlTrim.children.add(new OptionElement(data: name, value: name));
-      }
-    } else {
-      new Toast.error(
-          title: "Error!",
-          message: content['Error'],
-          position: ToastPos.bottomLeft);
-    }
+    frmSeries = new SeriesForm();
+    frmEngine = new EngineForm();
+    frmGearbox = new GearboxForm();
   }
 
   Key get vinKey {
@@ -113,28 +51,12 @@ class VehicleForm {
     return txtVin.text;
   }
 
-  String get year {
-    return ddlYear.value;
-  }
-
-  String get month {
-    return "";
-  }
-
-  String get manufacturer {
-    return ddlManufacturer.value;
+  Series get series {
+    return frmSeries.object;
   }
 
   String get makeCountry {
     return "Unknown";
-  }
-
-  String get model {
-    return ddlModel.value;
-  }
-
-  String get trim {
-    return ddlTrim.value;
   }
 
   String get drive {
@@ -161,8 +83,8 @@ class VehicleForm {
     return double.parse(numPrice.value);
   }
 
-  num get condition {
-    return num.parse(ddlCondition.value);
+  String get condition {
+    return ddlCondition.value;
   }
 
   String get issues {
@@ -182,29 +104,45 @@ class VehicleForm {
   }
 
   String get doors {
-    return (ddlDoors).value;
+    return ddlDoors.value;
+  }
+
+  String get colour {
+    return txtColour.text;
+  }
+
+  String get paintNo {
+    return "unknown";
+  }
+
+  Engine get engine {
+    return frmEngine.object;
+  }
+
+  Gearbox get gearbox {
+    return frmGearbox.object;
+  }
+
+  List<String> get extra {
+    return liExtra.children.map((e) => e.text);
   }
 
   Vehicle get object {
     return new Vehicle(
-      vinKey,
-      vin,
-      series,
-      colour,
-      paintNo,
-      num.parse(month),
-      num.parse(year),
-      engine,
-      gearbox,
-      bodytype,
-      doors,
-      trim,
-      extra,
-    );
-    /*,
+        vinKey,
+        vin,
+        series,
+        colour,
+        paintNo,
+        engine,
+        gearbox,
+        bodytype,
+        num.parse(doors),
+        extra,
         spare,
         service,
-        bodytype,
-        doors);*/
+        condition,
+        issues,
+        mileage);
   }
 }

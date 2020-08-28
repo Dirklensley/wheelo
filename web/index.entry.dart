@@ -1,5 +1,5 @@
-import 'package:Wheelo/submissionform.dart';
+import 'package:Wheelo/vehicleform.dart';
 
 void main() {
-  new SubmissionForm("#frmSubmission", "#btnSubmissionSubmit");
+  new VehicleForm("#frmVehicle", "#btnSubmit");
 }

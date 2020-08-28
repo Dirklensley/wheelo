@@ -21,9 +21,6 @@ func SetupRoutes(clnt, scrt, securityUrl, authorityUrl string) http.Handler {
 
 	scopes := map[string]bool{
 		"comms.messages.create":    true,
-		"theme.assets.download":    true,
-		"theme.assets.view":        true,
-		"artifact.download":        true,
 		"leads.submission.create":  true,
 		"vin.lookup.manufacturers": true,
 		"vin.lookup.models":        true,
