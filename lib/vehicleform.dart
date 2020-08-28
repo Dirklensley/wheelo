@@ -37,6 +37,7 @@ class VehicleForm extends FormState {
     chkSpare = querySelector("#chkSpare");
     ddlBodyType = querySelector("#ddlBodyType");
     ddlDoors = querySelector("#ddlDoors");
+    txtColour = querySelector("#txtColour");
 
     frmSeries = new SeriesForm();
     frmEngine = new EngineForm();
@@ -91,6 +92,10 @@ class VehicleForm extends FormState {
     return txtIssues.text;
   }
 
+  String get colour {
+    return txtColour.text;
+  }
+
   bool get spare {
     return chkSpare.checked;
   }
@@ -105,10 +110,6 @@ class VehicleForm extends FormState {
 
   String get doors {
     return ddlDoors.value;
-  }
-
-  String get colour {
-    return txtColour.text;
   }
 
   String get paintNo {
