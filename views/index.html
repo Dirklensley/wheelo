@@ -1,143 +1,182 @@
-
 {{template "master.html" .}}
 {{define "layoutcontent"}}
 <form id="frmVehicle" role="form" data-toggle="validator">
-    <section class="section has-background-grey-lighter services">
+    <section class="section has-background-light services">
         <h2 class="title has-text-centered">Vehicle Details</h2>
-        <div class="columns is-multiline is-centered about-me has-text-centered" data-aos="fade-in"
-            data-aos-easing="linear" id="services">
-            <div class="column is-10">
-                <h4 class="subtitle"><b>Year</b></h4>
-                <div class="control has-text-centered">
-                    <div class="select is-fullwidth has-text-centered">
-                        <select id="ddlYear" class="is-hovered">
-                            <option>Select Year</option>
-                            {{range $k := .Data.Years}}
-                            <option value="{{$k}}">{{$k}}</option>
-                            {{end}}
-                        </select>
+        <div class="container has-background-grey-lighter">
+            <div class="columns is-multiline is-centered about-me has-text-centered" data-aos="fade-in"
+                data-aos-easing="linear" id="services">
+                <div class="column is-9">
+                    <h2 class="subtitle has-text-left"><b>Series</b></h2>
+                    <div class="control has-text-centered">
+                        <div class="select is-fullwidth has-text-centered is-medium">
+                            <select id="ddlYear" class="is-hovered">
+                                <option disabled selected hidden>Select Year...</option>
+                                {{range $k := .Data.Years}}
+                                <option value="{{$k}}">{{$k}}</option>
+                                {{end}}
+                            </select>
+                        </div>
+                    </div>
+                </div><br>
+                <div class="column is-9">
+                    <div class="control has-text-centered">
+                        <div class="select is-fullwidth has-text-centered is-medium">
+                            <select id="ddlMake" class="is-hovered">
+                                <option disabled selected hidden>Select Make...</option>
+                                <option>With options</option>
+                            </select>
+                        </div>
+                    </div>
+                </div><br />
+                <div class="column is-9">
+                    <div class="control has-text-centered has-text-centered">
+                        <div class="select is-fullwidth is-medium">
+                            <select id="ddlModel" class="is-hovered">
+                                <option disabled selected hidden>Select Model...</option>
+                                <option>With options</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </div><br>
-            <div class="column is-10">
-                <h4 class="subtitle"><b>Make</b></h4>
-                <div class="control has-text-centered">
-                    <div class="select is-fullwidth has-text-centered">
-                        <select id="ddlMake" class="is-hovered">
-                            <option>Select dropdown</option>
-                            <option>With options</option>
-                        </select>
+                <div class="column is-9">
+                    <div class="control has-text-centered">
+                        <div class="select is-fullwidth has-text-centered is-medium">
+                            <select class="is-hovered">
+                                <option class="ddlt" disabled selected hidden>Select Trim...</option>
+                                <option>With options</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </div><br />
-            <div class="column is-10">
-                <h4 class="subtitle"><b>Model</b></h4>
-                <div class="control has-text-centered has-text-centered">
-                    <div class="select is-fullwidth">
-                        <select id="ddlModel" class="is-hovered">
-                            <option>Select dropdown</option>
-                            <option>With options</option>
-                        </select>
+                <div class="column is-5">
+                    <div class="control has-text-centered">
+                        <div class="select is-fullwidth has-text-centered is-medium">
+                            <select id="ddlBodyStyle" class="is-hovered">
+                                <option disabled selected hidden>Select bodytype...</option>
+                                <option value="0">Bus</option>
+                                <option value="1">Cabriolet</option>
+                                <option value="2">Coupe</option>
+                                <option value="3">Double Cab Bakkie</option>
+                                <option value="4">Dropside</option>
+                                <option value="5">Hatchback</option>
+                                <option value="6">MPV</option>
+                                <option value="7">Panel Van</option>
+                                <option value="8">SUV</option>
+                                <option value="9">Sedan</option>
+                                <option value="10">Single Cab Bakkie</option>
+                                <option value="11">Station Wagon</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-4">
+                    <div class="control has-text-centered has-text-centered">
+                        <div class="select is-fullwidth is-medium">
+                            <select id="ddlDoors" class="is-hovered">
+                                <option disabled selected hidden>Select doors...</option>
+                                <option value="2">2 Door</option>
+                                <option value="4">4 Door</option>
+                                <option value="5">5 Door</option>
+                                <option value="0">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-9">
+                    <div class="control has-text-centered">
+                        <div class="select is-fullwidth has-text-centered is-medium">
+                            <select id="ddlEngine" class="is-hovered">
+                                <option class="ddlt" disabled selected hidden>Select fuel type...</option>
+                                <option value="petrol">Petrol</option>
+                                <option value="diesel">Diesel</option>
+                                <option value="hybrid">Hybrid</option>
+                                <option value="electric">Elecric</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-9">
+                    <div class="control has-text-centered">
+                        <div class="select is-fullwidth has-text-centered is-medium">
+                            <select id="ddlGearbox" class="is-hovered">
+                                <option class="ddlt" disabled selected hidden>Select transmission...</option>
+                                <option value="manual">Manual</option>
+                                <option value="auto">Auto</option>
+                                <option value="dsg">DSG</option>
+                                <option value="cvt">CVT</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-5">
+                    <h4 class="subtitle has-text-left"><b>Mileage</b></h4>
+                    <div class="control has-text-centered">
+                        <input id="numMileage" class="input" type="number" max="1000000" step="100"
+                            placeholder="Current mileage">
+                    </div>
+                </div>
+                <div class="column is-4 chkbox">
+                    <div class="level">
+                        <label class="checkbox">
+                            <input id="chkService" type="checkbox">
+                            Service History?
+                        </label>
+                        <label class="checkbox">
+                            <input id="chkSpare" type="checkbox">
+                            Spare Keys?
+                        </label>
+                    </div>
+                </div>
+                <div class="column is-9">
+                    <h4 class="subtitle has-text-left"><b>Condition</b></h4>
+                    <div class="control has-text-centered">
+                        <div class="select is-fullwidth has-text-centered">
+                            <select id="ddlCondition" class="is-hovered">
+                                <option value="1">1 - Poor</option>
+                                <option value="2">2 - Needs work</option>
+                                <option value="3">3 - Average</option>
+                                <option value="4">4 - Good</option>
+                                <option value="5">5 - Very Good</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-5">
+                    <h4 class="subtitle has-text-left"><b>Any issues on the vehicle?</b></h4>
+                    <div class="field">
+                        <div class="control">
+                            <textarea id="txtIssues" class="textarea"
+                                placeholder="Please list any issues on the vehicle you are selling e.g Engine light, Cracked windscreen etc."></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-4">
+                    <h4 class="subtitle has-text-left"><b>Any extras on the vehicle?</b></h4>
+                    <div class="field is-grouped">
+                        <p class="control is-expanded">
+                            <input class="input" type="text" placeholder="Add Extra's">
+                        </p>
+                        <p class="control">
+                            <button type="button" class="button is-info" id="btnAddExtra">Add</button>
+                        </p>
+                    </div>
+                    <div class="field is-grouped is-grouped-multiline">
+                        <div class="control">
+                            <div id="liExtra" class="tags has-addons">
+                                <a class="tag is-link">Bullbar</a>
+                                <a class="tag is-delete"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-12">
+                        <div class="buttons is-right">
+                            <button id="btnSubmit" class="button is-block is-normal">Next</button>
+                            <p id="frmStep1Err" class="help is-danger"></p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="column is-10">
-                <h4 class="subtitle"><b>Trim</b></h4>
-                <div class="control has-text-centered">
-                    <div class="select is-fullwidth has-text-centered">
-                        <select id="ddlTrim" class="is-hovered">
-                            <option>Select dropdown</option>
-                            <option>With options</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <br /><br /><br />
-            <div class="column is-5">
-                <h4 class="subtitle"><b>Body Type</b></h4>
-                <div class="control has-text-centered">
-                    <div class="select is-fullwidth has-text-centered">
-                        <select id="ddlBodyStyle" class="is-hovered">
-                            <option>Select dropdown</option>
-                            <option value="0">Bus</option>
-                            <option value="1">Cabriolet</option>
-                            <option value="2">Coupe</option>
-                            <option value="3">Double Cab Bakkie</option>
-                            <option value="4">Dropside</option>
-                            <option value="5">Hatchback</option>
-                            <option value="6">MPV</option>
-                            <option value="7">Panel Van</option>
-                            <option value="8">SUV</option>
-                            <option value="9">Sedan</option>
-                            <option value="10">Single Cab Bakkie</option>
-                            <option value="11">Station Wagon</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="column is-5">
-                <h4 class="subtitle"><b>Doors</b></h4>
-                <div class="control has-text-centered has-text-centered">
-                    <div class="select is-fullwidth">
-                        <select id="ddlDoors" class="is-hovered">
-                            <option>Select dropdown</option>
-                            <option value="2">2 Door</option>
-                            <option value="4">4 Door</option>
-                            <option value="5">5 Door</option>
-                            <option value="0">Other</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="column is-5">
-                <h4 class="subtitle"><b>Mileage</b></h4>
-                <div class="control has-text-centered">
-                    <input id="numMileage" class="input" type="number" max="1000000" step="100"
-                        placeholder="Current mileage">
-                </div>
-            </div>
-            <div class="column is-5 chkbox">
-                <div class="control level">
-                    <label class="checkbox">
-                        <input id="chkService" type="checkbox">
-                        <b>Service History?</b>
-                    </label>
-                    <label class="checkbox">
-                        <input id="chkSpare" type="checkbox">
-                        <b>Spare Keys?</b>
-                    </label>
-                </div>
-            </div>
-            <div class="column is-5">
-                <h4 class="subtitle"><b>Condition</b></h4>
-                <div class="control has-text-centered">
-                    <div class="select is-fullwidth has-text-centered">
-                        <select id="ddlCondition" class="is-hovered">
-                            <option value="1">1 - Poor</option>
-                            <option value="2">2 - Needs work</option>
-                            <option value="3">3 - Average</option>
-                            <option value="4">4 - Good</option>
-                            <option value="5">5 - Very Good</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="column is-5">
-                <h4 class="subtitle"><b>Any issues on the vehicle?</b></h4>
-                <div class="field">
-                    <div class="control">
-                        <textarea id="txtIssues" class="textarea"
-                            placeholder="Please list any issues on the vehicle you are selling e.g Engine light, Cracked windscreen etc."></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="column is-10">
-                <div class="buttons is-right">
-                    <button id="btnSubmit" class="button is-block is-normal">Next</button>
-                    <p id="frmStep1Err" class="help is-danger"></p>
-                </div>
-            </div>
-        </div>
     </section>
 </form>
 {{end}}

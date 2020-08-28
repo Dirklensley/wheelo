@@ -26,7 +26,7 @@ class VehicleForm extends FormState {
   EngineForm frmEngine;
   GearboxForm frmGearbox;
   TextInputElement txtColour;
-  UListElement liExtra;
+  DivElement liExtra;
 
   VehicleForm(String idElem, String submitBtn) : super(idElem, submitBtn) {
     numMileage = querySelector("#numMileage");
@@ -127,7 +127,7 @@ class VehicleForm extends FormState {
   List<String> get extra {
     return liExtra.children.map((e) => e.text);
   }
-
+  
   Vehicle get object {
     return new Vehicle(
         vinKey,
