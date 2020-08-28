@@ -21,6 +21,11 @@ class VehicleForm {
   CheckboxInputElement chkSpare;
   SelectElement ddlBodyType;
   SelectElement ddlDoors;
+  NumberInputElement numPaintNo;
+  TextInputElement txtColour;
+  TextInputElement txtEngine;
+  TextInputElement txtGearbox;
+  TextInputElement txtExtra;
 
   VehicleForm() {
     ddlYear = querySelector("#ddlYear");
@@ -35,6 +40,12 @@ class VehicleForm {
     chkSpare = querySelector("#chkSpare");
     ddlBodyType = querySelector("#ddlBodyType");
     ddlDoors = querySelector("#ddlDoors");
+    txtColour = querySelector("#txtColour");
+    txtEngine = querySelector("#txtEngine");
+    txtExtra = querySelector("#txtExtra");
+    txtGearbox = querySelector("#txtGearbox");
+    numPaintNo = querySelector("numPaintNo");
+    
 
     ddlYear.onChange.listen(getManufacturers);
     ddlManufacturer.onChange.listen(getModels);
@@ -169,6 +180,10 @@ class VehicleForm {
     return txtIssues.text;
   }
 
+  String get colour {
+    return txtColour.text;
+  }
+
   bool get spare {
     return chkSpare.checked;
   }
@@ -181,8 +196,24 @@ class VehicleForm {
     return ddlBodyType.value;
   }
 
-  String get doors {
-    return (ddlDoors).value;
+  num get doors {
+    return num.parse (ddlDoors.value);
+  }
+
+  num get paintNo {
+    return num.parse(numPaintNo.value);
+  }
+
+  String get engine {
+    return txtEngine.value;
+  }
+
+  String get gearbox {
+    return txtGearbox.value;
+  }
+
+  String get extra {
+    return txtExtra.value;
   }
 
   Vehicle get object {
@@ -198,6 +229,8 @@ class VehicleForm {
       gearbox,
       bodytype,
       doors,
+      service,
+      spare,
       trim,
       extra,
     );
