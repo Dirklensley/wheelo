@@ -6,7 +6,7 @@ class GearboxForm {
   TextInputElement txtCode;
   TextInputElement txtSerialNo;
   NumberInputElement numGears;
-  SelectElement ddlBody;
+  SelectElement ddlType;
 
   String get code {
     return txtCode.text;
@@ -21,7 +21,7 @@ class GearboxForm {
   }
 
   String get type {
-    return ddlBody.value;
+    return ddlType.value;
   }
 
   Gearbox get object {
