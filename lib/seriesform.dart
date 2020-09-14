@@ -27,7 +27,7 @@ class SeriesForm {
     var req = await fetchManufacturers(year);
 
     var content = jsonDecode(req.response);
-
+    print("Manufacturer: ${req.status}");
     if (req.status == 200) {
       if (ddlManufacturer.hasChildNodes()) {
         ddlManufacturer.children.clear();
