@@ -13,6 +13,7 @@ func main() {
 	clientId := flag.String("client", "mango.wheelo", "Client ID which will be used to verify this instance")
 	clientSecrt := flag.String("secret", "secret", "Client Secret which will be used to authenticate this instance")
 	securty := flag.String("security", "http://localhost:8086", "Security Provider's URL")
+	manager := flag.String("manager", "http://localhost:8097", "User Provider's URL")
 	authr := flag.String("authority", "http://localhost:8094", "Authority Provider's URL")
 
 	flag.Parse()
@@ -27,7 +28,7 @@ func main() {
 		ReadTimeout:  time.Second * 15,
 		WriteTimeout: time.Second * 15,
 		Addr:         ":8105",
-		Handler:      handles.SetupRoutes(*clientId, *clientSecrt, *securty, *authr),
+		Handler:      handles.SetupRoutes(*clientId, *clientSecrt, *securty, *manager, *authr),
 	}
 
 	err = srvr.ListenAndServe()

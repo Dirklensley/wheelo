@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-func SetupRoutes(clnt, scrt, securityUrl, authorityUrl string) http.Handler {
+func SetupRoutes(clnt, scrt, securityUrl, managerUrl, authorityUrl string) http.Handler {
 	tmpl, err := drx.LoadTemplate("./views")
 
 	if err != nil {
@@ -28,7 +28,7 @@ func SetupRoutes(clnt, scrt, securityUrl, authorityUrl string) http.Handler {
 		"artifact.uploads.create":      true,
 	}
 
-	clntIns := middle.NewClientInspector(clnt, scrt, http.DefaultClient, securityUrl, authorityUrl)
+	clntIns := middle.NewClientInspector(clnt, scrt, http.DefaultClient, securityUrl, managerUrl, authorityUrl)
 	r.HandleFunc("/", clntIns.Middleware(Index(tmpl), scopes)).Methods(http.MethodGet)
 	r.HandleFunc("/photos", clntIns.Middleware(Photos(tmpl), scopes)).Methods(http.MethodGet)
 	r.HandleFunc("/personal", clntIns.Middleware(Personal(tmpl), scopes)).Methods(http.MethodGet)
